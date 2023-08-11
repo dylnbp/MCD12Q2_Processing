@@ -1,7 +1,7 @@
 # -*- coding: cp936 -*-
 import arcpy,os,glob
 import time
-from osgeo import gdal, osr
+# from osgeo import gdal, osr
 from arcpy import env
 from arcpy.sa import *
 
@@ -17,8 +17,8 @@ env.overwriteOutput = True
 ## env.nodata = "NONE" ## this doesn't work
 arcpy.CheckOutExtension("spatial")
 
-Tiff2DOY_Input = inWorkspace+"/Test_TIFF_MLCD_V6_Data/"
-Tiff2DOY_Output = inWorkspace+"/Test_Step1_CalculationDOY_Results/"
+Tiff2DOY_Input = inWorkspace+"/TIFF_MLCD_V6_Data/"
+Tiff2DOY_Output = inWorkspace+"/Step1_CalculationDOY/"
 
 greeup_InputList = glob.glob(Tiff2DOY_Input+"*GreenupB*.tif")
 QA_All_InputList = glob.glob(Tiff2DOY_Input+"*QA_ALLB*.tif")
@@ -82,17 +82,20 @@ for origRaster in greeup_InputList:
         QA_Part2 = QA_RasterNameList.split('.')[2]
         QA_Part3 = QA_RasterNameList.split('.')[3]
         if(QA_Part0 == greenupPart0 and QA_Part1 == greenupPart1 and QA_Part2 == greenupPart2 and QA_Part3 == greenupPart3):
-            print QA_RasterNameList
+            # print QA_RasterNameList
             conDoyRaster = Con((QA_Raster == 0)|(QA_Raster == 1), doyRaster) ## value = 0 (best) or 1 (good)
             # print conDoyRaster.pixelType
+    conDoyRaster.save("tempResult.tif")
 
+    sr = arcpy.SpatialReference(4326) ##Geographic Coordinate system "WGS 1984" (factory code=4326)
+    arcpy.ProjectRaster_management("tempResult.tif", "tempProject.tif", sr, "NEAREST", "0.0045", "", "", "")
     # defining the outfile name
     outputName = "DOY_"+ origRasterNameList
     outputRaster = Tiff2DOY_Output + outputName
     print(outputRaster)
     #conDoyRaster.save(outputRaster)
     #try:
-    arcpy.CopyRaster_management(conDoyRaster,outputRaster,"DEFAULTS","","32767","","","16_BIT_SIGNED")
+    arcpy.CopyRaster_management("tempProject.tif",outputRaster,"DEFAULTS","","32767","","","16_BIT_SIGNED")
     #except:
         #print "Copy Raster example failed."
         #print arcpy.GetMessages()

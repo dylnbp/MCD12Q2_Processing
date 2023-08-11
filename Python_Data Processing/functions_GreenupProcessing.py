@@ -12,7 +12,7 @@ import gc
 import pandas as pd
 
 
-## open tiff tile
+## open tiff file
 def return_band(mcd12q1_file_name, band_number):
     # open mcd12q1
     fn_mcd12q1 = mcd12q1_file_name
@@ -34,6 +34,7 @@ def return_band(mcd12q1_file_name, band_number):
     ds_mcd12q1 = None
     band = None
 
+
 ## export the .tif file
 def output_file(output_name, output_array, geoTransform, proj, cols, rows):
     format = "GTiff"
@@ -45,6 +46,7 @@ def output_file(output_name, output_array, geoTransform, proj, cols, rows):
     outDataset.SetGeoTransform(geoTransform)
     outDataset.SetProjection(proj)
 
+
 ## removing the outlier of greenup metrics (2001-2016) at each pixel
 def remove_outlier(pixel_in):
     df_in = pd.DataFrame(data=pixel_in, columns=['pixelIn'])
@@ -55,6 +57,7 @@ def remove_outlier(pixel_in):
     fence_high = q3 + 1.5 * iqr
     df_out = df_in.loc[(df_in['pixelIn'] > fence_low) & (df_in['pixelIn'] < fence_high)]
     return list(df_out['pixelIn'])
+
 
 ## checking the order of year in greenup input list
 def check_yearOrder(grenupList):
@@ -74,6 +77,7 @@ def check_yearOrder(grenupList):
             outputValue = 1
 
     return outputValue
+
 
 ## exporting the combined B1 and B2 results
 def export_combinedStat(Year_Mean, MeanName, Year_Trend, TrendName, Year_pValue, pValueName,
@@ -96,7 +100,7 @@ def CalB1_GreenupStat(greenupList, limitCount, trendName, pValueName, meanName, 
 
     for i in range(0, rows0):
         print i
-        #print str(time.ctime())
+        # print str(time.ctime())
         oneRowPixels = band0[i, :]
         pValueList = []
         meanList = []
@@ -132,8 +136,8 @@ def CalB1_GreenupStat(greenupList, limitCount, trendName, pValueName, meanName, 
                     pValueList.append(50)
                 else:
                     pValueList.append(0)
-                meanList.append(int(round(np.mean(validValues),0)))
-                medList.append(int(round(np.median(validValues),0)))
+                meanList.append(int(round(np.mean(validValues), 0)))
+                medList.append(int(round(np.median(validValues), 0)))
                 sdList.append(int(round(np.std(validValues), 2) * 100))
             else:
                 band0[i, j] = 32767
@@ -226,8 +230,8 @@ def CalB2_GreenupStat(greenupList, limitCount, trendName, pValueName, meanName, 
                     pValueList.append(50)
                 else:
                     pValueList.append(0)
-                meanList.append(int(round(np.mean(validValues),0)))
-                medList.append(int(round(np.median(validValues),0)))
+                meanList.append(int(round(np.mean(validValues), 0)))
+                medList.append(int(round(np.median(validValues), 0)))
                 sdList.append(int(round(np.std(validValues), 2) * 100))
             else:
                 band0[i, j] = 32767
@@ -272,3 +276,114 @@ def CalB2_GreenupStat(greenupList, limitCount, trendName, pValueName, meanName, 
     output_file(sdName, SD_Data, geoTransform0, proj0, cols0, rows0)
     SD_Data = None
 
+
+def ExtractSiteValues(timeSign, region_Input, sites_Input, SOS_Input, trend_Input, pValue_Input, sd_Input, buff_TH, erase_TH,
+                          pValue_TH, SD_TH):
+    strBuff_TH = str(buff_TH) + " Kilometers"
+    strErase_TH = str(erase_TH) + " Kilometers"
+
+    # removing duplicated sites with the same name, latitude and longitude
+    arcpy.DeleteIdentical_management(sites_Input, ["place_name", "latitude","longitude"])
+
+    ## generating the buffer
+    sitesBuff_OutputName = sites_Input.replace(".shp", "_" + str(buff_TH) + "_" + str(erase_TH) + "_Buff.shp")
+    if (erase_TH > 0 and erase_TH < buff_TH):
+        arcpy.Buffer_analysis(sites_Input, "tempBuffer.shp", strBuff_TH)
+        arcpy.Buffer_analysis(sites_Input, "tempErase.shp", strErase_TH)
+        arcpy.Erase_analysis("tempBuffer.shp", "tempErase.shp", sitesBuff_OutputName)
+    elif (erase_TH == 0):
+        arcpy.Buffer_analysis(sites_Input, sitesBuff_OutputName, strBuff_TH)
+    else:
+        print ("Please using an effective radius to define buffer!")
+
+    meanBuffPoint_OutputName = region_Input.split("\\")[-1].replace(".shp", "_Sites_Buff_" + str(buff_TH) + "_" + str(erase_TH) + "_Mean_Point.shp")
+    trendBuffPoint_OutputName = region_Input.split("\\")[-1].replace(".shp", "_Sites_Buff_" + str(buff_TH) + "_" + str(erase_TH) + "_Trend_Point.shp")
+
+    meanBuff_OutputName = region_Input.split("\\")[-1].replace(".shp", "_Sites_Buff_" + str(buff_TH) + "_" + str(erase_TH) + "_Mean.tif")
+    trendBuff_OutputName = region_Input.split("\\")[-1].replace(".shp", "_Sites_Buff_" + str(buff_TH) + "_" + str(erase_TH) + "_Trend.tif")
+
+    suffixMean = "_" + timeSign + "_" + str(buff_TH) + "_" + str(erase_TH) + "_" + str(pValue_TH) + "_" + str(SD_TH) + "_Mean_Buff.shp"
+    print suffixMean
+    suffixTrend = "_" + timeSign + "_" + str(buff_TH) + "_" + str(erase_TH) + "_" + str(pValue_TH) + "_" + str(SD_TH) + "_Trend_Buff.shp"
+    meanJoin_OutputName = region_Input.split("\\")[-1].replace(".shp", suffixMean)
+    trendJoin_OutputName = region_Input.split("\\")[-1].replace(".shp", suffixTrend)
+
+
+    if (pValue_TH == 0 and SD_TH == 0):
+        meanBuff_Extract = ExtractByMask(SOS_Input, sitesBuff_OutputName)
+        trendBuff_Extract = ExtractByMask(trend_Input, sitesBuff_OutputName)
+        arcpy.CopyRaster_management(meanBuff_Extract, meanBuff_OutputName, "DEFAULTS", "", "32767", "", "", "16_BIT_SIGNED")
+        arcpy.CopyRaster_management(trendBuff_Extract, trendBuff_OutputName, "DEFAULTS", "", "32767", "", "", "32_BIT_FLOAT")
+        arcpy.RasterToPoint_conversion(meanBuff_Extract, meanBuffPoint_OutputName, "VALUE")
+        arcpy.RasterToPoint_conversion(trendBuff_Extract, trendBuffPoint_OutputName, "VALUE")
+        arcpy.SpatialJoin_analysis(meanBuffPoint_OutputName, sitesBuff_OutputName, meanJoin_OutputName,
+                                   "JOIN_ONE_TO_MANY")
+        arcpy.SpatialJoin_analysis(trendBuffPoint_OutputName, sitesBuff_OutputName, trendJoin_OutputName,
+                                   "JOIN_ONE_TO_MANY")
+        # meanStat = ZonalStatisticsAsTable(inZoneData, zoneField, meanBuff_Extract, meanStat_OutputName, "DATA", "ALL")
+        # trendStat = ZonalStatisticsAsTable(inZoneData, zoneField, "tempIntTrend.tif", trendStat_OutputName, "DATA", "ALL")
+    elif (pValue_TH == 0 and SD_TH > 0):
+        meanBuff_Extract = ExtractByMask(SOS_Input, sitesBuff_OutputName)
+        trendBuff_Extract = ExtractByMask(trend_Input, sitesBuff_OutputName)
+        sdBuff_Extract = ExtractByMask(sd_Input, sitesBuff_OutputName)
+        mean_sdFilter = Con(sdBuff_Extract <= SD_TH, meanBuff_Extract)
+        trend_sdFilter = Con(sdBuff_Extract <= SD_TH, trendBuff_Extract)
+        arcpy.CopyRaster_management(mean_sdFilter, meanBuff_OutputName, "DEFAULTS", "", "32767", "", "",
+                                    "16_BIT_SIGNED")
+        arcpy.CopyRaster_management(trend_sdFilter, trendBuff_OutputName, "DEFAULTS", "", "32767", "", "",
+                                    "32_BIT_FLOAT")
+        arcpy.RasterToPoint_conversion(mean_sdFilter, meanBuffPoint_OutputName, "VALUE")
+        arcpy.RasterToPoint_conversion(trend_sdFilter, trendBuffPoint_OutputName, "VALUE")
+        arcpy.SpatialJoin_analysis(meanBuffPoint_OutputName, sitesBuff_OutputName, meanJoin_OutputName,
+                                   "JOIN_ONE_TO_MANY")
+        arcpy.SpatialJoin_analysis(trendBuffPoint_OutputName, sitesBuff_OutputName, trendJoin_OutputName,
+                                   "JOIN_ONE_TO_MANY")
+    elif (pValue_TH > 0 and SD_TH == 0):
+        meanBuff_Extract = ExtractByMask(SOS_Input, sitesBuff_OutputName)
+        trendBuff_Extract = ExtractByMask(trend_Input, sitesBuff_OutputName)
+        pValueBuff_Extract = ExtractByMask(pValue_Input, sitesBuff_OutputName)
+        if (pValue_TH == 1):
+            mean_pValueFilter = Con(pValueBuff_Extract == 1, meanBuff_Extract)
+            trend_pValueFilter = Con(pValueBuff_Extract == 1, trendBuff_Extract)
+        elif (pValue_TH == 5):
+            mean_pValueFilter = Con((pValueBuff_Extract == 1) | (pValueBuff_Extract == 5), meanBuff_Extract)
+            trend_pValueFilter = Con((pValueBuff_Extract == 1) | (pValueBuff_Extract == 5), trendBuff_Extract)
+        elif (pValue_TH == 50):
+            mean_pValueFilter = Con(pValueBuff_Extract != 0, meanBuff_Extract)
+            trend_pValueFilter = Con(pValueBuff_Extract != 0, trendBuff_Extract)
+        else:
+            print "Invalid threshold ! "
+            exit(1)
+        arcpy.RasterToPoint_conversion(mean_pValueFilter, meanBuffPoint_OutputName, "VALUE")
+        arcpy.RasterToPoint_conversion(trend_pValueFilter, trendBuffPoint_OutputName, "VALUE")
+        arcpy.SpatialJoin_analysis(meanBuffPoint_OutputName, sitesBuff_OutputName, meanJoin_OutputName,
+                                   "JOIN_ONE_TO_MANY")
+        arcpy.SpatialJoin_analysis(trendBuffPoint_OutputName, sitesBuff_OutputName, trendJoin_OutputName,
+                                   "JOIN_ONE_TO_MANY")
+    elif (pValue_TH > 0 and SD_TH > 0):
+        meanBuff_Extract = ExtractByMask(SOS_Input, sitesBuff_OutputName)
+        trendBuff_Extract = ExtractByMask(trend_Input, sitesBuff_OutputName)
+        pValueBuff_Extract = ExtractByMask(pValue_Input, sitesBuff_OutputName)
+        sdBuff_Extract = ExtractByMask(sd_Input, sitesBuff_OutputName)
+        if (pValue_TH == 1):
+            temp_pValue_0 = Con(pValueBuff_Extract == 1, 1, 0)
+            temp_pValue = Con(IsNull(temp_pValue_0), 0, temp_pValue_0)
+        elif (pValue_TH == 5):
+            temp_pValue_0 = Con((pValueBuff_Extract == 1) | (pValueBuff_Extract == 5), 1, 0)
+            temp_pValue = Con(IsNull(temp_pValue_0), 0, temp_pValue_0)
+        elif (pValue_TH == 50):
+            temp_pValue_0 = Con(pValueBuff_Extract != 0, 1, 0)
+            temp_pValue = Con(IsNull(temp_pValue_0), 0, temp_pValue_0)
+        temp_SD_0 = Con(sdBuff_Extract <= SD_TH, 1, 0)
+        temp_SD = Con(IsNull(temp_SD_0), 0, temp_SD_0)
+
+        filterTemplate = temp_pValue + temp_SD
+        mean_Filter = Con(filterTemplate == 2, meanBuff_Extract)
+        trend_Filter = Con(filterTemplate == 2, trendBuff_Extract)
+
+        arcpy.RasterToPoint_conversion(mean_Filter, meanBuffPoint_OutputName, "VALUE")
+        arcpy.RasterToPoint_conversion(trend_Filter, trendBuffPoint_OutputName, "VALUE")
+        arcpy.SpatialJoin_analysis(meanBuffPoint_OutputName, sitesBuff_OutputName, meanJoin_OutputName,
+                                   "JOIN_ONE_TO_MANY")
+        arcpy.SpatialJoin_analysis(trendBuffPoint_OutputName, sitesBuff_OutputName, trendJoin_OutputName,
+                                   "JOIN_ONE_TO_MANY")

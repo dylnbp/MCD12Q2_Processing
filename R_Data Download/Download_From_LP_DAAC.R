@@ -20,9 +20,9 @@ library(httr)
 directory_name=getwd()
 print(directory_name)
 
-linksPath <- "MLCD_V6_Links"
+linksPath <- "MCD_V6_Links"
 netrcPath <- "netrc_file"
-downloadedData <- "Downloaded_MLCD_V6_Data"
+downloadedData <- "Downloaded_MCD_V6_Data"
  
 dl_dir <- paste(directory_name,"\\",downloadedData,sep="")   # Set dir to download files to
 setwd(dl_dir)                                                
