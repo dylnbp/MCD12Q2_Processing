@@ -9,6 +9,6 @@ Vegetation phenological events, such as the occurrence of first leaf or first bl
 [1: Widespread spring phenology effects on drought recovery of Northern Hemisphere ecosystems]
 [2: Investigation of wildfire impacts on land surface phenology from MODIS time series in the western US forests],
 
-The global land surface phenology (MCD12Q2 V6 product) was downloaded from NASA's Land Processes Distributed Active Archive Center (LP DAAC), and processed to evaluate trends in spring phenology in south and central asia.
+The global land surface phenology (MCD12Q2 V6 product) was downloaded from NASA's Land Processes Distributed Active Archive Center (LP DAAC), and processed to evaluate trends in spring phenology in Asia.
 
 The onset of greenness layer involved in the MCD12Q2 V6 HDF4 file provides spring phenological metrics, indicated by day of year (DOY), at a spatial resolution of 500m.
