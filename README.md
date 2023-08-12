@@ -1,6 +1,11 @@
 # remotely-sensed-spring-phenology
-[Remote Sensing Phenology](https://www.usgs.gov/special-topics/remote-sensing-phenology/science/remote-sensing-phenology) uses satellites to track seasonal changes in vegetation on regional, continental, and global scales.
+[Remote sensing phenology](https://www.usgs.gov/special-topics/remote-sensing-phenology/science/remote-sensing-phenology) uses satellites to track seasonal changes in vegetation on regional, continental, and global scales. Vegetation phenology is one of the most sensitive indicators in response to climate change. Ongoing climate change has widespread effects on the environment - for example, some plants are flowering/leafing out earlier, heat waves last longer, or wildfires occur more frequently. Remote sensing phenology is useful to document long-term phenological trends and monitor crop growth, drought severity, wildfire risk, invasive species and pests. Satellite-based phenological data play a vital role in assessing the impacts of climate change on ecosystems at multiple scales. 
 
+Vegetation phenological events, such as the occurrence of first leaf or first bloom, are commonly utilized to indicate the onset of spring. The timing of spring onset is crucial for understanding the health and changes in ecosystems, which are being rapidly impacted by global warming. Spring phenology governs the development of vegetation in the growing season, and it is also influenced by climatic factors such as temperature and precipitation in the non-growing season. Therefore, the study of spring phenology can provide insight into climate change trends and their associated impacts on biological processes.
+
+
+[1: Widespread spring phenology effects on drought recovery of Northern Hemisphere ecosystems]
+[2: Investigation of wildfire impacts on land surface phenology from MODIS time series in the western US forests],
 
 The global land surface phenology (MCD12Q2 V6 product) was downloaded from NASA's Land Processes Distributed Active Archive Center (LP DAAC), and processed to evaluate trends in spring phenology in south and central asia.
 
