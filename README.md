@@ -10,11 +10,11 @@ The MCD12Q2 data (in HDF4 format) was downloaded from NASA's Land Processes Dist
 
 ## Pixel-level analysis of SOS metrics
 The timing of spring onset is crucial for understanding the health and changes in ecosystems.
-### <center> Mean of SOS metrics </center> 
+### <center> Mean of SOS </center> 
 <img src="./Mean%20of%20SOS.png" 
      align="center" 
      width="1000" />
-### <center> Linear trend of SOS metrics </center> 
+### <center> Trend of SOS </center> 
 <img src="./Trend%20of%20SOS.png" 
      align="center" 
      width="1000" />
