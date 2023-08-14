@@ -6,7 +6,7 @@ Spring phenological events, such as the occurrence of first leaf or first bloom,
 ## Phenology product derived from satellite data
 The MODIS Land Surface Dynamics Product (MCD12Q2) provides global land surface phenology metrics at 500m spatial resolution and annual time step since 2001. This product is based on time series of the 2-band Enhanced Vegetation Index (EVI2), calculated from MODIS nadir BRDF adjusted surface reflectances. The phenology metrics identify the day of year (DOY) for greenup, midgreenup, peak, maturity, midgreendown, senescence and dormancy over a vegetation cycle. 
 
-The MCD12Q2 data (in HDF4 format) was downloaded from NASA's Land Processes Distributed Active Archive Center (LP DAAC), and its greenup layer (pixel-level SOS metrics in DOY) was used to represent spring phenology. Each SOS metric is defined as the date when EVI2 first crossed 15% of the segment EVI2 amplitude. This project processed SOS metrics from 2001 to 2016, and evaluated trends in spring phenology in Asia.
+The MCD12Q2 data (in HDF4 format) was downloaded from NASA's Land Processes Distributed Active Archive Center (LP DAAC), and its greenup layer (pixel-level SOS metrics in DOY) was used to represent spring phenology. The SOS metric is defined as the date when EVI2 first crossed 15% of the segment EVI2 amplitude. This project processed SOS metrics from 2001 to 2016, and evaluated trends in spring phenology in Asia.
 
 ## Analysis of pixel-level SOS metrics
 <img src="./Mean%20of%20SOS.png" 
