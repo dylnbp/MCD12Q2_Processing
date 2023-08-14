@@ -28,8 +28,8 @@ Multi-year SOS metrics were analyzed at the pixel level. For each pixel, the fol
      width="1000" />
 
 ## References:
-[1] Li, Yang, et al. "Widespread spring phenology effects on drought recovery of Northern Hemisphere ecosystems." Nature Climate Change 13.2 (2023): 182-188. \
-[2] Wang, Jianmin, and Xiaoyang Zhang. "Investigation of wildfire impacts on land surface phenology from MODIS time series in the western US forests." ISPRS Journal of Photogrammetry and Remote Sensing 159 (2020): 281-295. \
-[3] Grünig, Marc, et al. "Applying deep neural networks to predict incidence and phenology of plant pests and diseases." Ecosphere 12.10 (2021): e03791.\
-[4] Fatima, Zartash, et al. "The fingerprints of climate warming on cereal crops phenology and adaptation options." Scientific Reports 10.1 (2020): 18013.
+[1] Li, Yang, et al. "Widespread spring phenology effects on drought recovery of Northern Hemisphere ecosystems." **Nature Climate Change** 13.2 (2023): 182-188. \
+[2] Wang, Jianmin, and Xiaoyang Zhang. "Investigation of wildfire impacts on land surface phenology from MODIS time series in the western US forests." **ISPRS Journal of Photogrammetry and Remote Sensing** 159 (2020): 281-295. \
+[3] Grünig, Marc, et al. "Applying deep neural networks to predict incidence and phenology of plant pests and diseases." **Ecosphere** 12.10 (2021): e03791.\
+[4] Fatima, Zartash, et al. "The fingerprints of climate warming on cereal crops phenology and adaptation options." **Scientific Reports** 10.1 (2020): 18013.
 
