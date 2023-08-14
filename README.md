@@ -8,7 +8,7 @@ The MODIS Land Surface Dynamics Product (MCD12Q2) provides global land surface p
 
 The MCD12Q2 data (in HDF4 format) was downloaded from NASA's Land Processes Distributed Active Archive Center (LP DAAC), and its greenup layer (pixel-level SOS metrics in DOY) was used to represent spring phenology. Each SOS metric is defined as the date when EVI2 first crossed 15% of the segment EVI2 amplitude. This project processed SOS metrics from 2001 to 2016, and evaluated trends in spring phenology in Asia.
 
-## Pixel-level analysis of SOS metrics
+## Analysis of pixel-level SOS metrics
 <img src="./Mean%20of%20SOS.png" 
      align="center" 
      width="1000" />
