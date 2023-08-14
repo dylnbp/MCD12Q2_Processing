@@ -1,5 +1,5 @@
 # Remotely Sensed Spring Phenology
-[Remote sensing phenology](https://www.usgs.gov/special-topics/remote-sensing-phenology/science/remote-sensing-phenology) uses satellites to track seasonal changes in vegetation on regional, continental, and global scales. It is useful to record long-term phenological trends and monitor crop growth, drought severity, wildfire risk, invasive species and pests[1-2]. Vegetation phenology is one of the most sensitive indicators in response to climate change. Satellite-based phenological data play a vital role in assessing the impacts of climate change on ecosystems at multiple scales. 
+[Remote sensing phenology](https://www.usgs.gov/special-topics/remote-sensing-phenology/science/remote-sensing-phenology) uses satellites to track seasonal changes in vegetation on regional, continental, and global scales. It is useful to record long-term phenological trends and monitor crop growth, drought severity, wildfire risk, invasive species and pests[1-4]. Vegetation phenology is one of the most sensitive indicators in response to climate change. Satellite-based phenological data play a vital role in assessing the impacts of climate change on ecosystems at multiple scales. 
 
 Spring phenological events, such as first leaf or first flower, are commonly utilized to indicate start of spring (SOS). Spring phenology governs vegetation development in the growing season, while it is influenced by climatic factors such as temperature and precipitation in the non-growing season. Therefore, the study of spring phenology can help understand climate change and and its associated effects on biological processes.
 
@@ -29,5 +29,7 @@ Multi-year SOS metrics were analyzed at the pixel level. For each pixel, the fol
 
 ## References:
 [1] Li, Yang, et al. "Widespread spring phenology effects on drought recovery of Northern Hemisphere ecosystems." Nature Climate Change 13.2 (2023): 182-188. \
-[2] Wang, Jianmin, and Xiaoyang Zhang. "Investigation of wildfire impacts on land surface phenology from MODIS time series in the western US forests." ISPRS Journal of Photogrammetry and Remote Sensing 159 (2020): 281-295. 
+[2] Wang, Jianmin, and Xiaoyang Zhang. "Investigation of wildfire impacts on land surface phenology from MODIS time series in the western US forests." ISPRS Journal of Photogrammetry and Remote Sensing 159 (2020): 281-295. \
+[3] Grünig, Marc, et al. "Applying deep neural networks to predict incidence and phenology of plant pests and diseases." Ecosphere 12.10 (2021): e03791.\
+[4] Fatima, Zartash, et al. "The fingerprints of climate warming on cereal crops phenology and adaptation options." Scientific Reports 10.1 (2020): 18013.
 
