@@ -10,10 +10,10 @@ The MCD12Q2 data files (in HDF4 format) were downloaded from NASA's Land Process
 
 ## Analysis of SOS metrics
 Multi-year SOS metrics were analyzed at the pixel level. For each pixel, the following statistical calculation was conducted:
-* Mean of SOS metrics
-* Standard deviation of SOS metrics
-* Linear regression of SOS metrics
-* P-value for the liner regression
+* Mean of SOS metrics (the timing of spring onset)
+* Standard deviation of SOS metrics (the degree of variation of spring phenology)
+* Linear regression of SOS metrics (the coefficient indicates a spring phenological trend: <0 means earlier SOS, >0 means later SOS)
+* P-value for the linear regression (significant at 0.1)
 
 <img src="./Mean%20of%20SOS.png" 
      align="center" 
