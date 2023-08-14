@@ -1,17 +1,26 @@
 # Remotely Sensed Spring Phenology
-[Remote sensing phenology](https://www.usgs.gov/special-topics/remote-sensing-phenology/science/remote-sensing-phenology) uses satellites to track seasonal changes in vegetation on regional, continental, and global scales. Vegetation phenology is one of the most sensitive indicators in response to climate change. Ongoing climate change has widespread effects on the environment - for example, some plants are flowering/leafing out earlier, heat waves last longer, or wildfires occur more frequently. Remote sensing phenology is useful to document long-term phenological trends and monitor crop growth, drought severity, wildfire risk, invasive species and pests[1-4]. Satellite-based phenological data play a vital role in assessing the impacts of climate change on ecosystems at multiple scales. 
+[Remote sensing phenology](https://www.usgs.gov/special-topics/remote-sensing-phenology/science/remote-sensing-phenology) uses satellites to track seasonal changes in vegetation on regional, continental, and global scales. It is useful to record long-term phenological trends and monitor crop growth, drought severity, wildfire risk, invasive species and pests[1-2]. Vegetation phenology is one of the most sensitive indicators in response to climate change. Satellite-based phenological data play a vital role in assessing the impacts of climate change on ecosystems at multiple scales. 
 
-Vegetation phenological events, such as the occurrence of first leaf or first bloom, are commonly utilized to indicate start of spring (SOS). The timing of spring onset is crucial for understanding the health and changes in ecosystems, which are being rapidly impacted by global warming. Spring phenology governs the development of vegetation in the growing season, and it is also influenced by climatic factors such as temperature and precipitation in the non-growing season. Therefore, the study of spring phenology can provide insight into climate change and its associated biological responses.
+Spring phenological events, such as the occurrence of first leaf or first bloom, are commonly utilized to indicate start of spring (SOS). Spring phenology governs the development of vegetation in the growing season, while it is influenced by climatic factors such as temperature and precipitation in the non-growing season. Therefore, the study of spring phenology can help understand climate change and and its associated effects on biological processes.
 
-## Phenology products derived using satellite data
-The global land surface phenology (MCD12Q2 V6 product) was downloaded from NASA's Land Processes Distributed Active Archive Center (LP DAAC), and processed to evaluate trends in spring phenology in Asia.
+## Phenology product derived from satellite data
+The MODIS Land Surface Dynamics Product (MCD12Q2) provides global land surface phenology metrics at 500m spatial resolution and annual time step since 2001. This product is based on time series of the 2-band Enhanced Vegetation Index (EVI2), calculated from MODIS nadir BRDF adjusted surface reflectances. The phenology metrics identify the day of year (DOY) for greenup, midgreenup, peak, maturity, midgreendown, senescence and dormancy over a vegetation cycle. 
+
+The MCD12Q2 data (in HDF4 format) was downloaded from NASA's Land Processes Distributed Active Archive Center (LP DAAC), and its greenup layer (pixel-level SOS metrics in DOY) was used to represent spring phenology. Each SOS metric is defined as the date when EVI2 first crossed 15% of the segment EVI2 amplitude. This project processed SOS metrics from 2001 to 2016, and evaluated trends in spring phenology in Asia.
 
 ## Pixel-level analysis of SOS metrics
-The onset of greenness layer involved in the MCD12Q2 V6 HDF4 file provides spring phenological metrics, indicated by day of year (DOY), at a spatial resolution of 500m.
+The timing of spring onset is crucial for understanding the health and changes in ecosystems.
+[Mean of SOS metrics]()
+
+[Linear trend of SOS metrics]()
 
 
 ## References:
 [1] Widespread spring phenology effects on drought recovery of Northern Hemisphere ecosystems \
-[2] Investigation of wildfire impacts on land surface phenology from MODIS time series in the western US forests \
+[2] Investigation of wildfire impacts on land surface phenology from MODIS time series in the western US forests 
+
+
+
+
 
 
