@@ -11,13 +11,16 @@ The MCD12Q2 data (in HDF4 format) was downloaded from NASA's Land Processes Dist
 ## Pixel-level analysis of SOS metrics
 The timing of spring onset is crucial for understanding the health and changes in ecosystems.
 
+Mean of SOS metrics
 <img src="./Mean%20of%20SOS.png" 
      align="center" 
-     width="500" />
+     width="1000" />
 
-[Mean of SOS metrics](https://github.com/yan-055/remotely-sensed-spring-phenology/blob/master/Mean%20of%20SOS.png)
 
-[Linear trend of SOS metrics](https://github.com/yan-055/remotely-sensed-spring-phenology/blob/master/Trend%20of%20SOS.png)
+Linear trend of SOS metrics
+<img src="./Trend%20of%20SOS.png" 
+     align="center" 
+     width="1000" />
 
 
 ## References:
