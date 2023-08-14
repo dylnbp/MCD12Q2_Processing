@@ -3,7 +3,7 @@
 
 Vegetation phenological events, such as the occurrence of first leaf or first bloom, are commonly utilized to indicate start of spring (SOS). The timing of spring onset is crucial for understanding the health and changes in ecosystems, which are being rapidly impacted by global warming. Spring phenology governs the development of vegetation in the growing season, and it is also influenced by climatic factors such as temperature and precipitation in the non-growing season. Therefore, the study of spring phenology can provide insight into climate change and its associated biological responses.
 
-## Phenology products derived from satellite data
+## Phenology products derived using satellite data
 The global land surface phenology (MCD12Q2 V6 product) was downloaded from NASA's Land Processes Distributed Active Archive Center (LP DAAC), and processed to evaluate trends in spring phenology in Asia.
 
 ## Pixel-level analysis of SOS metrics
@@ -11,7 +11,7 @@ The onset of greenness layer involved in the MCD12Q2 V6 HDF4 file provides sprin
 
 
 ## References:
-[1] Widespread spring phenology effects on drought recovery of Northern Hemisphere ecosystems \n
-[2] Investigation of wildfire impacts on land surface phenology from MODIS time series in the western US forests \n
+[1] Widespread spring phenology effects on drought recovery of Northern Hemisphere ecosystems \
+[2] Investigation of wildfire impacts on land surface phenology from MODIS time series in the western US forests \
 
 
