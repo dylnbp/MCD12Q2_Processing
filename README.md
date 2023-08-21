@@ -6,7 +6,7 @@ Spring phenological events, such as first leaf or first flower, are commonly uti
 ## Phenology metrics derived from satellite data
 The MODIS Land Surface Dynamics Product (MCD12Q2) provides global land surface phenology metrics yearly since 2001 with a spatial resolution of 500m. The phenology metrics refer to the day of year (DOY) for greenup, midgreenup, peak, maturity, midgreendown, senescence and dormancy over a vegetation cycle. This product is derived from time series of the 2-band Enhanced Vegetation Index (EVI2), calculated using MODIS nadir BRDF adjusted surface reflectances. 
 
-The MCD12Q2 data files (in HDF4 format) were downloaded from NASA's Land Processes Distributed Active Archive Center (LP DAAC), and the greenup layer (providing pixel-level SOS metrics in DOY) was used to represent spring phenology. The SOS metric is defined as the date when EVI2 first crossed 15% of the segment EVI2 amplitude. This project processed SOS metrics of 2001 - 2016 over countries in Asia and assessed trends in spring phenology.
+In this project, MCD12Q2 data files (in HDF4 format) were downloaded from NASA's Land Processes Distributed Active Archive Center (LP DAAC), and the greenup layer (providing pixel-level SOS metrics in DOY) was used to represent spring phenology. The SOS metric is defined as the date when EVI2 first crossed 15% of the segment EVI2 amplitude. This project processed SOS metrics of 2001 - 2016 over countries in Asia and assessed trends in spring phenology.
 
 Data processing was conducted using Python and R.\
 **Python package:** scipy, arcpy, numpy, pandas, gdal, osr, multiprocessing \
@@ -18,6 +18,7 @@ Multi-year SOS metrics were analyzed at the pixel level. For each pixel, the fol
 * Standard deviation of SOS metrics - the degree of SOS variation
 * Linear regression of SOS metrics - the coefficient indicates a spring phenological trend: < 0 means earlier SOS, > 0 means later SOS
 * P-value for the linear regression - the significance level is 0.1
+## Results Displayed on the Map 
 <img src="./Mean%20of%20SOS.png" 
      align="center" 
      width="1000" />
